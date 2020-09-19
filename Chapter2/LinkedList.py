@@ -14,6 +14,14 @@ class Node(object):
             n = n.next
         n.next = end
 
+    def count(self):
+        temp = self
+        count = 0
+        while temp:
+            count += 1
+            temp = temp.next
+        return count
+
 
 def delete_node(head, d):
     if head.data == d:
@@ -41,6 +49,12 @@ class MyTestCase(unittest.TestCase):
         delete_node(nono, 7)
         self.assertEqual(nono.data, 23)
         self.assertEqual(nono.next.data, 8)
+
+    def test_count(self):
+        nono = Node(23)
+        nono.append_to_tail(7)
+        nono.append_to_tail(8)
+        self.assertEqual(nono.count(), 3)
 
 
 if __name__ == '__main__':
