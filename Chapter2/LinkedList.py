@@ -7,6 +7,14 @@ class Node(object):
     def __init__(self, d):
         self.data = d
 
+    def tail(self):
+        n = self
+        tail = n
+        while n:
+            tail = n
+            n = n.next
+        return tail
+
     def append_to_tail(self, d):
         end = Node(d)
         n = self
@@ -55,6 +63,14 @@ class MyTestCase(unittest.TestCase):
         nono.append_to_tail(7)
         nono.append_to_tail(8)
         self.assertEqual(nono.count(), 3)
+
+    def test_tail(self):
+        nono = Node(23)
+        second = Node(88)
+        nono.next = second
+        third = Node(42)
+        nono.next.next = third
+        self.assertTrue(third is nono.tail())
 
 
 if __name__ == '__main__':
